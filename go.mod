@@ -1,0 +1,3 @@
+module EDD_VJ1S2023_PY_202006666
+
+go 1.20
