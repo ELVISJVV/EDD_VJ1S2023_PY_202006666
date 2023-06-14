@@ -17,6 +17,7 @@ func main() {
 	
 	// Estructuras
 	listaEmpleados := &estructuras.ListaSimple{}
+	listaImagenes := &estructuras.ListaDoble{}
 	// colaPendientes := Estructuras.Cola{}
 	// colaPendientes.ConstructorCola(nil,0)
 
@@ -61,22 +62,20 @@ func main() {
 					var opcionAdmin string
 					fmt.Scanln(&opcionAdmin)
 					if opcionAdmin == "1"{
-						fmt.Println("*************** Carga Masiv Empleados **************")
-						fmt.Println("Ingrese ruta de la carga masiva")
+						fmt.Println("*************** Cargar Empleados **************")
+						fmt.Println("Ingrese ruta de la carga de empleados")
 						var cargaM string
 						fmt.Scanln(&cargaM)
 						estructuras.LeerArchivoEmpleados(cargaM,listaEmpleados)
 						fmt.Println("")
 						
 					}else if opcionAdmin == "2"{
-						fmt.Println("***************** Listado de  Estudiantes *****************")
-						// a := listaDoble.SizeLista()
-						// b := listaDoble.ReturnEstudianteLista(a)
-						// fmt.Println(b.GetNombre())
-						// fmt.Println(b.GetPass())
-						// Estructuras.Ordenamiento_Burbuja(listaDoble)
-						// listaDoble.MostrarConsola()
-						// fmt.Println("")
+						fmt.Println("*************** Cargar Imagenes **************")
+						fmt.Println("Ingrese ruta de la carga de imagenes")
+						var cargaM string
+						fmt.Scanln(&cargaM)
+						estructuras.LeerArchivoImagenes(cargaM,listaImagenes)
+						fmt.Println("")
 					}else if opcionAdmin == "3"{
 						
 						
@@ -90,6 +89,7 @@ func main() {
 						// fmt.Println("")
 					}else if opcionAdmin == "5"{
 						listaEmpleados.GraficarListaSimple()
+						listaImagenes.GraficarListaDoble()
 					}else if opcionAdmin == "6"{
 						salirAdmin = false
 					}else{

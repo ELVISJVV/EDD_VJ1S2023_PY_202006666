@@ -1,0 +1,15 @@
+digraph L{
+node [shape=box fillcolor="#FFEDBB" style = filled]
+subgraph cluster_p{
+label="Lista Estudiantes Pendientes"
+bgcolor = "#398D9C"
+Columna1[label = "letra_r
+", fillcolor=yellow];
+Columna2[label = "ave
+", fillcolor=yellow];
+{rank = same;
+Columna1;
+Columna2}
+Columna2-> Columna1;
+}
+}

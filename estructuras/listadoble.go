@@ -14,7 +14,7 @@ func (l *ListaDoble) estaVacia() bool {
 }
 
 
-func (l *ListaDoble) InsertarAlFinal(imagen *Imagen) {
+func (l *ListaDoble) Insertar(imagen *Imagen) {
 	
 	if l.estaVacia() {
 		nuevoNodo := &NodoDoble{imagen, nil, nil}
@@ -44,13 +44,13 @@ func (l *ListaDoble) MostrarConsola() {
 	}
 }
 
-
-func (l *ListaDoble) ReturnEstudianteLista(posicion int) *Estudiante{
+	
+func (l *ListaDoble) ReturnImagen(posicion int) *Imagen{
 	actual := l.Inicio
 	i := 1
 	for actual != nil{
 		if posicion == i{
-			return actual.alumno
+			return actual.Imagen
 		}
 		actual = actual.siguiente
 		i += 1
@@ -60,19 +60,18 @@ func (l *ListaDoble) ReturnEstudianteLista(posicion int) *Estudiante{
 
 
 func (l *ListaDoble)SizeLista() int {
-	
-	size := l.Longitud 
-	return size
+	// size := l.Longitud 
+	return l.Longitud
 }
 
 
 func (c *ListaDoble) GraficarListaDoble() {
-	nombre_archivo := "./lista.dot"
-	nombre_imagen := "lista.jpg"
+	nombre_archivo := "./listaDoble.dot"
+	nombre_imagen := "listaDoble.jpg"
 	texto := "digraph L{\n"
 	texto += "node [shape=box fillcolor=\"#FFEDBB\" style = filled]\n"
 	texto += "subgraph cluster_p{\n"
-	texto += "label=\"Lista Estudiantes Pendientes\"\n"
+	texto += "label=\"Lista Imagenes \"\n"
 	texto += "bgcolor = \"#398D9C\"\n"
 	
 	
@@ -83,7 +82,9 @@ func (c *ListaDoble) GraficarListaDoble() {
 	for i := 1; i <size +1; i++ {
 		
 
-		texto += "Columna" + strconv.Itoa(i) + "[label = \""+ strconv.Itoa(c.ReturnEstudianteLista(i).GetUser())+"\n"+c.ReturnEstudianteLista(i).GetNombre() +"\", fillcolor=yellow];\n"
+		// texto += "Columna" + strconv.Itoa(i) + "[label = \""+ strconv.Itoa(c.ReturnImagen(i).GetUser())+"\n"+c.ReturnImagen(i).GetNombre() +"\", fillcolor=yellow];\n"
+
+		texto += "Columna" + strconv.Itoa(i) + "[label = \""+ (c.ReturnImagen(i).Nombre)+"\n"+"\", fillcolor=yellow];\n"
 
 	}
 
@@ -106,32 +107,8 @@ func (c *ListaDoble) GraficarListaDoble() {
 
 		}
 		texto += "Columna"+ strconv.Itoa(i) + "-> Columna" +strconv.Itoa(i-1)+ ";\n"
+		texto += "Columna"+ strconv.Itoa(i-1) + "-> Columna" +strconv.Itoa(i)+ ";\n"
 	}
-	
-
-
-	
-	
-	for  i:= 1; i< size+1 ; i++  {
-		if c.ReturnEstudianteLista(i).GetPila().Longitud != 0{
-			texto += "Columna0"+strconv.Itoa(i)+"[shape=record label = \"{|"
-			new_size :=c.ReturnEstudianteLista(i).GetPila().Longitud
-		for j := 1; j< new_size+1 ; j++  {
-		
-
-			texto += c.ReturnEstudianteLista(i).GetPila().ReturnHoraPila(j) + "|"
-
-		}
-		texto += "}\", fillcolor=yellow];\n"
-		texto += "Columna"+ strconv.Itoa(i) + "-> Columna0" +strconv.Itoa(i)+ ";\n"
-		}
-		
-	}
-
-
-	
-	
-
 
 
 
