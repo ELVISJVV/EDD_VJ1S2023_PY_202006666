@@ -3,6 +3,29 @@ node [shape=box fillcolor="#FFEDBB" style = filled]
 subgraph cluster_p{
 label="Lista Empleados "
 bgcolor = "#398D9C"
+Columna1[label = "ID: 3475
+Nombre: Cristian Suy", fillcolor=yellow];
+Columna2[label = "ID: 4564
+Nombre: Hector Jimenez", fillcolor=yellow];
+Columna3[label = "ID: 1452
+Nombre: Pablo Velasquez", fillcolor=yellow];
+Columna4[label = "ID: 1957
+Nombre: Jaquelin Gomez", fillcolor=yellow];
+Columna5[label = "ID: 3340
+Nombre: Yadira Ruiz", fillcolor=yellow];
+Columna6[label = "ID: 2576
+Nombre: Paula Fuentes", fillcolor=yellow];
 {rank = same;
+Columna1;
+Columna2;
+Columna3;
+Columna4;
+Columna5;
+Columna6}
+Columna6-> Columna5;
+Columna5-> Columna4;
+Columna4-> Columna3;
+Columna3-> Columna2;
+Columna2-> Columna1;
 }
 }

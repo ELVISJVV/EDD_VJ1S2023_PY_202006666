@@ -1,9 +1,9 @@
 package estructuras
 
-// type NodoCola struct {
-// 	Cliente    *Cliente
-// 	siguiente  *NodoCola
-// }
+type NodoCola struct {
+	Cliente    *Cliente
+	siguiente  *NodoCola
+}
 
 
 // type NodoPila struct {

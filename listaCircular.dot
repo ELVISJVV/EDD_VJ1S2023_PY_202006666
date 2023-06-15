@@ -27,6 +27,6 @@ Columna5-> Columna4;
 Columna4-> Columna3;
 Columna3-> Columna2;
 Columna2-> Columna1;
-Columna1-> Columna6;
+Columna6-> Columna1;
 }
 }
