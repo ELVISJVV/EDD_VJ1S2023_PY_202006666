@@ -18,6 +18,7 @@ func main() {
 	// Estructuras
 	listaEmpleados := &estructuras.ListaSimple{}
 	listaImagenes := &estructuras.ListaDoble{}
+	listaClientes := &estructuras.ListaCircular{}
 	// colaPendientes := Estructuras.Cola{}
 	// colaPendientes.ConstructorCola(nil,0)
 
@@ -77,7 +78,11 @@ func main() {
 						estructuras.LeerArchivoImagenes(cargaM,listaImagenes)
 						fmt.Println("")
 					}else if opcionAdmin == "3"{
-						
+						fmt.Println("*************** Cargar Clientes **************")
+						fmt.Println("Ingrese ruta de la carga de clientes")
+						var cargaM string
+						fmt.Scanln(&cargaM)
+						estructuras.LeerArchivoClientes(cargaM,listaClientes)
 						
 					}else if opcionAdmin == "4"{
 							
@@ -88,8 +93,10 @@ func main() {
 						// Estructuras.LeerArchivo(cargaM,&colaPendientes)
 						// fmt.Println("")
 					}else if opcionAdmin == "5"{
-						listaEmpleados.GraficarListaSimple()
-						listaImagenes.GraficarListaDoble()
+						// listaEmpleados.GraficarListaSimple()
+						// listaImagenes.GraficarListaDoble()
+						listaClientes.Mostrar()
+						listaClientes.GraficarListaCircular()
 					}else if opcionAdmin == "6"{
 						salirAdmin = false
 					}else{

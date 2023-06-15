@@ -11,10 +11,10 @@ package estructuras
 // 	siguiente  *NodoPila
 // }
 
-// type NodoCircular struct {
-// 	Cliente   *Cliente
-// 	siguiente *NodoCircular
-// }
+type NodoCircular struct {
+	Cliente   *Cliente
+	siguiente *NodoCircular
+}
 
 type NodoSimple struct {
 	Empleado   *Empleado
