@@ -1,4 +1,4 @@
-package estructuras;
+package estructuras
 
 
 type Empleado struct {

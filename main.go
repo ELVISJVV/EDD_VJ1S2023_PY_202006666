@@ -2,7 +2,6 @@ package main
 
 import (
 	"EDD_VJ1S2023_PY_202006666/estructuras"
-
 	"fmt"
 )
 
@@ -49,7 +48,7 @@ func main() {
 				salirAdmin := true
 
 				for salirAdmin {
-					fmt.Println("***************** Administrador *****************")
+					fmt.Println("************* Administrador 202006666 *************")
 					fmt.Println("*            1. Cargar Empleados")
 					fmt.Println("*            2. Cargar Imagenes")
 					fmt.Println("*            3. Cargar Clientes")
@@ -136,7 +135,51 @@ func main() {
 						fmt.Println("Ingresa una opcion valida")
 					}
 				}
-			}
+			}else{
+				if listaEmpleados.Longitud == 0 {
+					fmt.Println("No se encontraron coincidencias")
+				}else{
+					validacionEmpleados := false
+					size :=listaEmpleados.Longitud +1
+					for i := 1; i < size; i++ {
+						if listaEmpleados.ReturnEmpleadoListaSimple(i).ID == usuario && listaEmpleados.ReturnEmpleadoListaSimple(i).Contraseña == password{
+							fmt.Println("Se inicio correctamente")	
+							validacionEmpleados = true
+							salirEmpleado := true
+							for salirEmpleado {
+								fmt.Println("*************** Empleado " + listaEmpleados.ReturnEmpleadoListaSimple(i).ID + "***************")
+								fmt.Println("*            1. Ver imagenes Cargadas Cliente")
+								fmt.Println("*            2. Realizar  Pedido")
+								fmt.Println("*            3. Cerrar Sesion")
+								fmt.Println("*********************************************")
+								fmt.Println("")
+								var opcionEmpleado string
+								fmt.Scanln(&opcionEmpleado)
+								if opcionEmpleado == "1" {
+									fmt.Println("*************** Atender Cliente **************")
+									fmt.Println("Ingrese ruta de la carga de la cola")
+									var cargaM string
+									fmt.Scanln(&cargaM)
+									estructuras.LeerArchivoActualizarCola(cargaM, colaClientes)
+									// Estructuras.LeerArchivo(cargaM,&colaPendientes)
+									fmt.Println("")
+								} else if opcionEmpleado == "3" {
+									salirEmpleado = false
+								} else {
+									fmt.Println("Ingresa una opcion valida")
+								}
+							}
+
+
+							break
+						}
+							
+						}
+					if !validacionEmpleados{
+						fmt.Println("No se encontraron coincidencias")
+					}
+					}
+				}
 
 		} else if opcionMenu == "2" {
 			fmt.Println("")
@@ -150,11 +193,5 @@ func main() {
 		}
 	}
 
-	// 	fmt.Println("*************** Carga Masiva **************")
-	// 	fmt.Println("Ingrese ruta de la carga masiva")
 
-	// 	ruta := "empleados.csv"
-	// 	lista := &estructuras.ListaSimple{}
-	// 	estructuras.LeerArchivoEmpleados(ruta,lista)
-	// 	lista.GraficarListaSimple()
 }

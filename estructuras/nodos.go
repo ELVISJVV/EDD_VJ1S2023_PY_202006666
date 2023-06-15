@@ -6,10 +6,10 @@ type NodoCola struct {
 }
 
 
-// type NodoPila struct {
-// 	Pedido     *Pedido
-// 	siguiente  *NodoPila
-// }
+type NodoPila struct {
+	Pedido     *Pedido
+	siguiente  *NodoPila
+}
 
 type NodoCircular struct {
 	Cliente   *Cliente
