@@ -1,0 +1,28 @@
+{
+	"pedidos": [
+		{
+			"id_cliente": "5965", 
+			"imagen": "ave "
+		},
+		{
+			"id_cliente": "3833", 
+			"imagen": "ave "
+		},
+		{
+			"id_cliente": "2480", 
+			"imagen": "ave "
+		},
+		{
+			"id_cliente": "6344", 
+			"imagen": "ave "
+		},
+		{
+			"id_cliente": "4476", 
+			"imagen": "ave "
+		},
+		{
+			"id_cliente": "4575", 
+			"imagen": "ave" 
+		}
+	]
+}

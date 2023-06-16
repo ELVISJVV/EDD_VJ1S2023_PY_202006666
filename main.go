@@ -3,6 +3,7 @@ package main
 import (
 	"EDD_VJ1S2023_PY_202006666/estructuras"
 	"fmt"
+	"strconv"
 )
 
 func main() {
@@ -17,15 +18,7 @@ func main() {
 	listaImagenes := &estructuras.ListaDoble{}
 	listaClientes := &estructuras.ListaCircular{}
 	colaClientes := &estructuras.Cola{}
-	// colaPendientes := Estructuras.Cola{}
-	// colaPendientes.ConstructorCola(nil,0)
-
-	// listaDoble := Estructuras.NewLista()
-
-	// pilaAdmin := Estructuras.Pila{}
-	// pilaAdmin.ConstructorPila(nil, 0)
-	// pilaUsuarios := Estructuras.Pila{}
-	// pilaUsuarios.ConstructorPila(nil, 0)
+	pilaPedidos := &estructuras.Pila{}
 
 	for salirMenu {
 		fmt.Println("***************** LOGIN ***********************")
@@ -98,7 +91,7 @@ func main() {
 							fmt.Println("*            2. Reporte Imagenes")
 							fmt.Println("*            3. Reporte Clientes")
 							fmt.Println("*            4. Reporte Cola")
-							fmt.Println("*            5. Reporte Pendientes")
+							fmt.Println("*            5. Reporte Pila")
 							fmt.Println("*            6. Regresar")
 							fmt.Println("*********************************************")
 							fmt.Println("")
@@ -117,7 +110,8 @@ func main() {
 								colaClientes.GraficarCola()
 								fmt.Println("")
 							} else if opcionReportes == "5" {
-								fmt.Println("*************** Reporte Pendientes **************")
+								fmt.Println("*************** Reporte Pila **************")
+								pilaPedidos.GraficarPila()
 								// colaPendientes.Mostrar()
 								fmt.Println("")
 							} else if opcionReportes == "6" {
@@ -127,27 +121,25 @@ func main() {
 							}
 						}
 
-						
-						
 					} else if opcionAdmin == "6" {
 						salirAdmin = false
 					} else {
 						fmt.Println("Ingresa una opcion valida")
 					}
 				}
-			}else{
+			} else {
 				if listaEmpleados.Longitud == 0 {
 					fmt.Println("No se encontraron coincidencias")
-				}else{
+				} else {
 					validacionEmpleados := false
-					size :=listaEmpleados.Longitud +1
+					size := listaEmpleados.Longitud + 1
 					for i := 1; i < size; i++ {
-						if listaEmpleados.ReturnEmpleadoListaSimple(i).ID == usuario && listaEmpleados.ReturnEmpleadoListaSimple(i).Contraseña == password{
-							fmt.Println("Se inicio correctamente")	
+						if listaEmpleados.ReturnEmpleadoListaSimple(i).ID == usuario && listaEmpleados.ReturnEmpleadoListaSimple(i).Contraseña == password {
+							fmt.Println("Se inicio correctamente")
 							validacionEmpleados = true
 							salirEmpleado := true
 							for salirEmpleado {
-								fmt.Println("*************** Empleado " + listaEmpleados.ReturnEmpleadoListaSimple(i).ID + "***************")
+								fmt.Println("*************** Empleado " + listaEmpleados.ReturnEmpleadoListaSimple(i).ID + " ***************")
 								fmt.Println("*            1. Ver imagenes Cargadas Cliente")
 								fmt.Println("*            2. Realizar  Pedido")
 								fmt.Println("*            3. Cerrar Sesion")
@@ -156,30 +148,83 @@ func main() {
 								var opcionEmpleado string
 								fmt.Scanln(&opcionEmpleado)
 								if opcionEmpleado == "1" {
-									fmt.Println("*************** Atender Cliente **************")
-									fmt.Println("Ingrese ruta de la carga de la cola")
-									var cargaM string
-									fmt.Scanln(&cargaM)
-									estructuras.LeerArchivoActualizarCola(cargaM, colaClientes)
-									// Estructuras.LeerArchivo(cargaM,&colaPendientes)
+									fmt.Println("********** Ver  Imagenes Cargadas *********")
+									listaImagenes.MostrarConsola()
 									fmt.Println("")
+
+								} else if opcionEmpleado == "2" {
+									fmt.Println("*************** Realizar Pedido **************")
+
+									existe := estructuras.Verificar(colaClientes, listaClientes)
+									if existe && colaClientes.Primero != nil { /*Usuario ya esta registrado en lista circular y la Cola aun tiene elementos*/
+
+										validar := true
+										for validar {
+											fmt.Println("Cliente atendido por el empleado " + listaEmpleados.ReturnEmpleadoListaSimple(i).ID)
+											fmt.Println("El ID del cliente actual es: ", colaClientes.Primero.Cliente.ID)
+											fmt.Println("Eliga una imagen de la lista:")
+											listaImagenes.MostrarConsola()
+											var imagen string
+											fmt.Scanln(&imagen)
+											if imagen >= "1" && imagen <= strconv.Itoa(listaImagenes.Longitud) {
+												i, _ := strconv.Atoi(imagen)
+												validar = false
+												imagenElegida := listaImagenes.ReturnImagen(i).Nombre
+												pedido := estructuras.Pedido{ID: colaClientes.Primero.Cliente.ID, Imagen: imagenElegida}
+												pilaPedidos.Push(&pedido)
+												colaClientes.Descolar()
+
+											}
+										}
+										contenido := estructuras.ArchivoJSON(pilaPedidos)
+										estructuras.CrearArchivo()
+										estructuras.EscribirArchivo(contenido)
+
+									} else if !existe && colaClientes.Primero != nil {
+										fmt.Println("Cliente atendido por el empleado " + listaEmpleados.ReturnEmpleadoListaSimple(i).ID)
+										variable := estructuras.AsignarLista(colaClientes, listaClientes)
+										fmt.Println(variable)
+										validar := true
+										for validar {
+
+											fmt.Println("Eliga una imagen de la lista:")
+											listaImagenes.MostrarConsola()
+											var imagen string
+											fmt.Scanln(&imagen)
+											if imagen >= "1" && imagen <= strconv.Itoa(listaImagenes.Longitud) {
+												i, _ := strconv.Atoi(imagen)
+												validar = false
+												imagenElegida := listaImagenes.ReturnImagen(i).Nombre
+												pedido := estructuras.Pedido{ID: colaClientes.Primero.Cliente.ID, Imagen: imagenElegida}
+												pilaPedidos.Push(&pedido)
+												colaClientes.Descolar()
+
+											}
+										}
+										contenido := estructuras.ArchivoJSON(pilaPedidos)
+										estructuras.CrearArchivo()
+										estructuras.EscribirArchivo(contenido)
+									} else if colaClientes.Primero == nil {
+										fmt.Println("Ya no hay alumnos por atender")
+									}
+
 								} else if opcionEmpleado == "3" {
 									salirEmpleado = false
+
 								} else {
 									fmt.Println("Ingresa una opcion valida")
 								}
 							}
 
-
 							break
 						}
-							
-						}
-					if !validacionEmpleados{
+
+					}
+					if !validacionEmpleados {
 						fmt.Println("No se encontraron coincidencias")
 					}
-					}
 				}
+			}
 
 		} else if opcionMenu == "2" {
 			fmt.Println("")
@@ -192,6 +237,5 @@ func main() {
 			fmt.Println("")
 		}
 	}
-
 
 }

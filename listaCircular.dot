@@ -15,18 +15,26 @@ Columna5[label = "ID: 3696
 Nombre: Jaime Rosales", fillcolor=yellow];
 Columna6[label = "ID: 5965
 Nombre: Alejandra Perez", fillcolor=yellow];
+Columna7[label = "ID: 7007
+Nombre: Hector Jimenez", fillcolor=yellow];
+Columna8[label = "ID: 4305
+Nombre: Teodoro Mejia", fillcolor=yellow];
 {rank = same;
 Columna1;
 Columna2;
 Columna3;
 Columna4;
 Columna5;
-Columna6}
+Columna6;
+Columna7;
+Columna8}
+Columna8-> Columna7;
+Columna7-> Columna6;
 Columna6-> Columna5;
 Columna5-> Columna4;
 Columna4-> Columna3;
 Columna3-> Columna2;
 Columna2-> Columna1;
-Columna6-> Columna1;
+Columna8-> Columna1;
 }
 }

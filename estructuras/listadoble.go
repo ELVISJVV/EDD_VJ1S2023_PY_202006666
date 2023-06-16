@@ -36,12 +36,16 @@ func (l *ListaDoble) Insertar(imagen *Imagen) {
 
 func (l *ListaDoble) MostrarConsola() {
 	aux := l.Inicio
+	count := 1
+	
 	for aux != nil {
-		fmt.Print("Imagen: ", aux.Imagen.Nombre)
-		fmt.Println(", Capas: ",aux.Imagen.Capas)
-		fmt.Println("********************************************")
+		// fmt.Println("************** Imagenes Disponibles **********")
+		fmt.Println(count,".  ", aux.Imagen.Nombre)
+		// fmt.Println(", Capas: ",aux.Imagen.Capas)
 		aux = aux.siguiente
+		count++
 	}
+	fmt.Println("********************************************")
 }
 
 	

@@ -1,0 +1,8 @@
+digraph L{
+node [shape=box fillcolor="#FFEDBB" style = filled]
+subgraph cluster_p{
+label="Pila Administrador"
+bgcolor = "#398D9C"
+Columna[shape=record label = "{|ID Cliente: 5965\nImagen: letra_r|ID Cliente: 6055\nImagen: ave|ID Cliente: 2480\nImagen: letra_r|ID Cliente: 6344\nImagen: ave|ID Cliente: 5773\nImagen: letra_r|ID Cliente: 4575\nImagen: ave|}", fillcolor=yellow];
+}
+}

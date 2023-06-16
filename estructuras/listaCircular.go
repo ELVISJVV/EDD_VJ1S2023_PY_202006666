@@ -39,59 +39,6 @@ func (l *ListaCircular) Mostrar() {
 	}
 }
 
-// func (l *ListaCircular) GraficarListaCircular()  {
-// 	var builder strings.Builder
-
-// 	// Escribir el encabezado de Graphviz
-// 	builder.WriteString("digraph ListaCircular {\n")
-// 	builder.WriteString("\trankdir=LR;\n")
-// 	builder.WriteString("\tnode [shape=box];\n")
-
-// 	// Escribir los nodos y conexiones
-// 	aux := l.Inicio
-// 	for i := 0; i < l.Longitud; i++ {
-// 		builder.WriteString(fmt.Sprintf("\t%s [label=\"%s\"];\n", aux.Cliente.ID, aux.Cliente.Nombre))
-// 		builder.WriteString(fmt.Sprintf("\t%s -> %s;\n", aux.Cliente.ID, aux.siguiente.Cliente.ID))
-// 		aux = aux.siguiente
-// 	}
-
-// 	// Cerrar el grafo
-// 	builder.WriteString("}")
-
-// 	// return builder.String()
-
-// }
-
-// func (l *ListaCircular) GraficarListaCircular() {
-
-// 	nombre_archivo := "./listaCircular.dot"
-// 	nombre_imagen := "listaCircular.jpg"
-// 	texto := "digraph L{\n"
-// 	texto += "node [shape=box fillcolor=\"#FFEDBB\" style = filled]\n"
-// 	texto += "subgraph cluster_p{\n"
-// 	texto += "label=\"Lista Imagenes \"\n"
-// 	texto += "bgcolor = \"#398D9C\"\n"
-// 	// Crear nodos
-// 	if l.Longitud > 0 {
-// 		aux := l.Inicio
-// 		for i := 0; i < l.Longitud; i++ {
-// 			builder.WriteString(fmt.Sprintf("\t\"%p\" [label=\"%v\"];\n", &aux.Cliente.ID, aux.Cliente))
-// 			aux = aux.siguiente
-// 		}
-// 	}
-
-// 	// aux := l.Inicio
-// 	// for i := 0; i < l.Longitud; i++ {
-// 	// 	builder.WriteString(fmt.Sprintf("\t%s [label=\"%s\"];\n", aux.Cliente.ID, aux.Cliente.Nombre))
-// 	// 	builder.WriteString(fmt.Sprintf("\t%s -> %s;\n", aux.Cliente.ID, aux.siguiente.Cliente.ID))
-// 	// 	aux = aux.siguiente
-// 	// }
-// 	// Cerrar el gráfico
-
-// 	crearArchivo(nombre_archivo)
-// 	escribirArchivoDot(texto, nombre_archivo)
-// 	ejecutar(nombre_imagen, nombre_archivo)
-// }
 
 func (l *ListaCircular) ReturnCliente(posicion int) *Cliente {
 	actual := l.Inicio

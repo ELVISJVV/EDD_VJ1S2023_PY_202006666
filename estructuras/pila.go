@@ -99,7 +99,7 @@ func (c *Pila) GraficarPila() {
 	for i := 1; i< size+1 ; i++  {
 		
 
-		texto += c.ReturnPedido(i).ID+"|"
+		texto += "ID Cliente: "+c.ReturnPedido(i).ID+"\\n"+"Imagen: " +c.ReturnPedido(i).Imagen +"|"
 
 	}
 
