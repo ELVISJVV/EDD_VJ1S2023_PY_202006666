@@ -86,7 +86,7 @@ func (c *Pila) GraficarPila() {
 	texto := "digraph L{\n"
 	texto += "node [shape=box fillcolor=\"#FFEDBB\" style = filled]\n"
 	texto += "subgraph cluster_p{\n"
-	texto += "label=\"Pila Administrador\"\n"
+	texto += "label=\"Pila Pedidos\"\n"
 	texto += "bgcolor = \"#398D9C\"\n"
 	
 	
