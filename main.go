@@ -3,6 +3,7 @@ package main
 import (
 	"EDD_VJ1S2023_PY_202006666/estructuras"
 	"fmt"
+	"os/exec"
 	"strconv"
 )
 
@@ -101,20 +102,43 @@ func main() {
 							fmt.Scanln(&opcionReportes)
 							if opcionReportes == "1" {
 								listaEmpleados.GraficarListaSimple()
+								cmd := exec.Command("cmd", "/c", "start", "listaSimple.jpg")
+								err := cmd.Start()
+								if err != nil {
+									fmt.Println("No pude abrir imagen")
+								}
 								fmt.Println("")
 							} else if opcionReportes == "2" {
 								listaImagenes.GraficarListaDoble()
+								cmd := exec.Command("cmd", "/c", "start", "listaDoble.jpg")
+								err := cmd.Start()
+								if err != nil {
+									fmt.Println("No pude abrir imagen")
+								}
 								fmt.Println("")
 							} else if opcionReportes == "3" {
 								listaClientes.GraficarListaCircular()
+								cmd := exec.Command("cmd", "/c", "start", "listaCircular.jpg")
+								err := cmd.Start()
+								if err != nil {
+									fmt.Println("No pude abrir imagen")
+								}
 								fmt.Println("")
 							} else if opcionReportes == "4" {
 								colaClientes.GraficarCola()
+								cmd := exec.Command("cmd", "/c", "start", "cola.jpg")
+								err := cmd.Start()
+								if err != nil {
+									fmt.Println("No pude abrir imagen")
+								}
 								fmt.Println("")
 							} else if opcionReportes == "5" {
-								fmt.Println("*************** Reporte Pila **************")
 								pilaPedidos.GraficarPila()
-								// colaPendientes.Mostrar()
+								cmd := exec.Command("cmd", "/c", "start", "pilaPedidos.jpg")
+								err := cmd.Start()
+								if err != nil {
+									fmt.Println("No pude abrir imagen")
+								}
 								fmt.Println("")
 							} else if opcionReportes == "6" {
 								salirVerImagenes := true
@@ -129,17 +153,16 @@ func main() {
 									listaImagenes.MostrarConsola()
 									fmt.Println("")
 									fmt.Println("Eliga una imagen de la lista:")
-									// listaImagenes.MostrarConsola()
 									var imagen string
 									fmt.Scanln(&imagen)
 									fmt.Println("")
-									if imagen >= "1" && imagen <= strconv.Itoa(listaImagenes.Longitud) {
-										i, _ := strconv.Atoi(imagen)
+
+									i, _ := strconv.Atoi(imagen)
+									if i >= 1 && i <= listaImagenes.Longitud {
 										salirVerImagenes = false
 										imagenElegida := listaImagenes.ReturnImagen(i).Nombre
 										listaCapas := &estructuras.ListaLayer{}
 										estructuras.LeerArchivoConfig("csv/"+imagenElegida+"/inicial.csv", listaCapas)
-										// fmt.Println("********** Ver  Capas Cargadas *********")
 										salircapas := true
 										for salircapas {
 											listaCapas.MostrarLayer()
@@ -147,14 +170,18 @@ func main() {
 											var capa string
 											fmt.Scanln(&capa)
 											fmt.Println("")
-											if capa >= "1" && capa <= strconv.Itoa(listaCapas.Longitud) {
-												j, _ := strconv.Atoi(capa)
+											j, _ := strconv.Atoi(capa)
+											if j >= 1 && j <= listaCapas.Longitud {
 												capaElegida := listaCapas.ReturnLayer(j)
-												fmt.Println(capaElegida)
 
 												matriz = &estructuras.Matriz{Raiz: &estructuras.NodoMatriz{PosX: -1, PosY: -1, Color: "RAIZ"}}
-												matriz.LeerArchivo("csv/" + imagenElegida + "/" + capaElegida+".csv")
+												matriz.LeerArchivo("csv/" + imagenElegida + "/" + capaElegida + ".csv")
 												matriz.Reporte()
+												cmd := exec.Command("cmd", "/c", "start", "matriz.jpg")
+								err := cmd.Start()
+								if err != nil {
+									fmt.Println("No pude abrir imagen")
+								}
 												salircapas = false
 											} else {
 												fmt.Println("Ingrese una opcion valida")
@@ -212,16 +239,21 @@ func main() {
 										listaImagenes.MostrarConsola()
 										fmt.Println("")
 										fmt.Println("Eliga una imagen de la lista:")
-										listaImagenes.MostrarConsola()
+										// listaImagenes.MostrarConsola()
 										var imagen string
 										fmt.Scanln(&imagen)
-										if imagen >= "1" && imagen <= strconv.Itoa(listaImagenes.Longitud) {
-											i, _ := strconv.Atoi(imagen)
+										i, _ := strconv.Atoi(imagen)
+										if i >= 1 && i <= listaImagenes.Longitud {
 											salirVerImagenes = false
 											imagenElegida := listaImagenes.ReturnImagen(i).Nombre
 											matriz_csv := &estructuras.Matriz{Raiz: &estructuras.NodoMatriz{PosX: -1, PosY: -1, Color: "RAIZ"}}
 											matriz_csv.LeerInicial("csv/"+imagenElegida+"/inicial.csv", imagenElegida)
 											matriz_csv.GenerarImagen(imagenElegida)
+											cmd := exec.Command("cmd", "/c", "start", "csv/" + imagenElegida + "/" + imagenElegida + ".html")
+								err := cmd.Start()
+								if err != nil {
+									fmt.Println("No pude abrir imagen")
+								}
 
 										} else {
 											fmt.Println("Ingrese una opcion valida")
@@ -248,8 +280,8 @@ func main() {
 											listaImagenes.MostrarConsola()
 											var imagen string
 											fmt.Scanln(&imagen)
-											if imagen >= "1" && imagen <= strconv.Itoa(listaImagenes.Longitud) {
-												i, _ := strconv.Atoi(imagen)
+											i, _ := strconv.Atoi(imagen)
+											if i >= 1 && i <= listaImagenes.Longitud {
 												validar = false
 												imagenElegida := listaImagenes.ReturnImagen(i).Nombre
 												pedido := estructuras.Pedido{ID: colaClientes.Primero.Cliente.ID, Imagen: imagenElegida}
@@ -285,8 +317,8 @@ func main() {
 											listaImagenes.MostrarConsola()
 											var imagen string
 											fmt.Scanln(&imagen)
-											if imagen >= "1" && imagen <= strconv.Itoa(listaImagenes.Longitud) {
-												i, _ := strconv.Atoi(imagen)
+											i, _ := strconv.Atoi(imagen)
+											if i >= 1 && i <= listaImagenes.Longitud {
 												validar = false
 												imagenElegida := listaImagenes.ReturnImagen(i).Nombre
 												pedido := estructuras.Pedido{ID: colaClientes.Primero.Cliente.ID, Imagen: imagenElegida}

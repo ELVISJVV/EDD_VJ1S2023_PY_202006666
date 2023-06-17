@@ -89,7 +89,7 @@ func (c *Cola) GraficarCola() {
 	texto := "digraph L{\n"
 	texto += "node [shape=box fillcolor=\"#FFEDBB\" style = filled]\n"
 	texto += "subgraph cluster_p{\n"
-	texto += "label=\"Lista Clientes Pendientes\"\n"
+	texto += "label=\"Cola Clientes Pendientes\"\n"
 	texto += "bgcolor = \"#398D9C\"\n"
 	
 	

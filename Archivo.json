@@ -1,6 +1,10 @@
 {
 	"pedidos": [
 		{
+			"id_cliente": "5572", 
+			"imagen": "hora_de_aventura"
+		},
+		{
 			"id_cliente": "4575", 
 			"imagen": "letra_r" 
 		}
