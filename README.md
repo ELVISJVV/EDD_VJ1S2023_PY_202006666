@@ -34,10 +34,13 @@ Podremos iniciar sesión con los empleados que se ingresaron por medio del archi
 ![menu empleado](/images/empleado.png)
 
 Al ingresar al menú de empleado podremos ver las imagenes cargadas y elegir una de ellas, al hacer esto se nos mostrará un archivo html con la imagen elegida.
+
 ![imagenes](/images/imagenes.png)
 ![deadpool](/images/deadpool.png)
 
+
 También podremos atender a la cola de clientes ingresados
+
 ![pedido](/images/pedido.png)
 
 El cliente podrá escoger la imagen a su elección y será pasado a una pila de clientes atendidos, si algún cliente en la cola no se encontraba ingresado anteriormente se le generará un número de ID aleatorio y será almacenado como cliente nuevo.
