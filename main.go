@@ -19,6 +19,7 @@ func main() {
 	listaClientes := &estructuras.ListaCircular{}
 	colaClientes := &estructuras.Cola{}
 	pilaPedidos := &estructuras.Pila{}
+	matriz := &estructuras.Matriz{Raiz: &estructuras.NodoMatriz{PosX: -1, PosY: -1, Color: "RAIZ"}}
 
 	for salirMenu {
 		fmt.Println("***************** LOGIN ***********************")
@@ -92,7 +93,8 @@ func main() {
 							fmt.Println("*            3. Reporte Clientes")
 							fmt.Println("*            4. Reporte Cola")
 							fmt.Println("*            5. Reporte Pila")
-							fmt.Println("*            6. Regresar")
+							fmt.Println("*            6. Reporte Capas")
+							fmt.Println("*            7. Regresar")
 							fmt.Println("*********************************************")
 							fmt.Println("")
 							var opcionReportes string
@@ -115,6 +117,55 @@ func main() {
 								// colaPendientes.Mostrar()
 								fmt.Println("")
 							} else if opcionReportes == "6" {
+								salirVerImagenes := true
+								for salirVerImagenes {
+									fmt.Println("********** Ver  Imagenes Cargadas *********")
+									if listaImagenes.Longitud == 0 {
+										fmt.Println("No hay imagenes cargadas")
+										fmt.Println("")
+										salirVerImagenes = false
+										break
+									}
+									listaImagenes.MostrarConsola()
+									fmt.Println("")
+									fmt.Println("Eliga una imagen de la lista:")
+									// listaImagenes.MostrarConsola()
+									var imagen string
+									fmt.Scanln(&imagen)
+									fmt.Println("")
+									if imagen >= "1" && imagen <= strconv.Itoa(listaImagenes.Longitud) {
+										i, _ := strconv.Atoi(imagen)
+										salirVerImagenes = false
+										imagenElegida := listaImagenes.ReturnImagen(i).Nombre
+										listaCapas := &estructuras.ListaLayer{}
+										estructuras.LeerArchivoConfig("csv/"+imagenElegida+"/inicial.csv", listaCapas)
+										// fmt.Println("********** Ver  Capas Cargadas *********")
+										salircapas := true
+										for salircapas {
+											listaCapas.MostrarLayer()
+											fmt.Println("Eliga una capa de la lista:")
+											var capa string
+											fmt.Scanln(&capa)
+											fmt.Println("")
+											if capa >= "1" && capa <= strconv.Itoa(listaCapas.Longitud) {
+												j, _ := strconv.Atoi(capa)
+												capaElegida := listaCapas.ReturnLayer(j)
+												fmt.Println(capaElegida)
+
+												matriz = &estructuras.Matriz{Raiz: &estructuras.NodoMatriz{PosX: -1, PosY: -1, Color: "RAIZ"}}
+												matriz.LeerArchivo("csv/" + imagenElegida + "/" + capaElegida+".csv")
+												matriz.Reporte()
+												salircapas = false
+											} else {
+												fmt.Println("Ingrese una opcion valida")
+											}
+										}
+
+									} else {
+										fmt.Println("Ingrese una opcion valida")
+									}
+								}
+							} else if opcionReportes == "7" {
 								salirReportes = false
 							} else {
 								fmt.Println("Ingresa una opcion valida")
@@ -139,8 +190,9 @@ func main() {
 							validacionEmpleados = true
 							salirEmpleado := true
 							for salirEmpleado {
+								fmt.Println("")
 								fmt.Println("*************** Empleado " + listaEmpleados.ReturnEmpleadoListaSimple(i).ID + " ***************")
-								fmt.Println("*            1. Ver imagenes Cargadas Cliente")
+								fmt.Println("*            1. Ver imagenes Cargadas")
 								fmt.Println("*            2. Realizar  Pedido")
 								fmt.Println("*            3. Cerrar Sesion")
 								fmt.Println("*********************************************")
@@ -148,9 +200,33 @@ func main() {
 								var opcionEmpleado string
 								fmt.Scanln(&opcionEmpleado)
 								if opcionEmpleado == "1" {
-									fmt.Println("********** Ver  Imagenes Cargadas *********")
-									listaImagenes.MostrarConsola()
-									fmt.Println("")
+									salirVerImagenes := true
+									for salirVerImagenes {
+										fmt.Println("********** Ver  Imagenes Cargadas *********")
+										if listaImagenes.Longitud == 0 {
+											fmt.Println("No hay imagenes cargadas")
+											fmt.Println("")
+											salirVerImagenes = false
+											break
+										}
+										listaImagenes.MostrarConsola()
+										fmt.Println("")
+										fmt.Println("Eliga una imagen de la lista:")
+										listaImagenes.MostrarConsola()
+										var imagen string
+										fmt.Scanln(&imagen)
+										if imagen >= "1" && imagen <= strconv.Itoa(listaImagenes.Longitud) {
+											i, _ := strconv.Atoi(imagen)
+											salirVerImagenes = false
+											imagenElegida := listaImagenes.ReturnImagen(i).Nombre
+											matriz_csv := &estructuras.Matriz{Raiz: &estructuras.NodoMatriz{PosX: -1, PosY: -1, Color: "RAIZ"}}
+											matriz_csv.LeerInicial("csv/"+imagenElegida+"/inicial.csv", imagenElegida)
+											matriz_csv.GenerarImagen(imagenElegida)
+
+										} else {
+											fmt.Println("Ingrese una opcion valida")
+										}
+									}
 
 								} else if opcionEmpleado == "2" {
 									fmt.Println("*************** Realizar Pedido **************")
@@ -163,6 +239,12 @@ func main() {
 											fmt.Println("Cliente atendido por el empleado " + listaEmpleados.ReturnEmpleadoListaSimple(i).ID)
 											fmt.Println("El ID del cliente actual es: ", colaClientes.Primero.Cliente.ID)
 											fmt.Println("Eliga una imagen de la lista:")
+											if listaImagenes.Longitud == 0 {
+												fmt.Println("No hay imagenes cargadas")
+												fmt.Println("")
+												validar = false
+												break
+											}
 											listaImagenes.MostrarConsola()
 											var imagen string
 											fmt.Scanln(&imagen)
@@ -174,11 +256,15 @@ func main() {
 												pilaPedidos.Push(&pedido)
 												colaClientes.Descolar()
 
+											} else {
+												fmt.Println("Ingrese una opcion valida")
 											}
 										}
-										contenido := estructuras.ArchivoJSON(pilaPedidos)
-										estructuras.CrearArchivo()
-										estructuras.EscribirArchivo(contenido)
+										if pilaPedidos.Primero != nil {
+											contenido := estructuras.ArchivoJSON(pilaPedidos)
+											estructuras.CrearArchivo()
+											estructuras.EscribirArchivo(contenido)
+										}
 
 									} else if !existe && colaClientes.Primero != nil {
 										fmt.Println("Cliente atendido por el empleado " + listaEmpleados.ReturnEmpleadoListaSimple(i).ID)
@@ -188,6 +274,14 @@ func main() {
 										for validar {
 
 											fmt.Println("Eliga una imagen de la lista:")
+											if listaImagenes.Longitud == 0 {
+
+												fmt.Println("")
+												fmt.Println("No hay imagenes cargadas")
+												fmt.Println("")
+												validar = false
+												break
+											}
 											listaImagenes.MostrarConsola()
 											var imagen string
 											fmt.Scanln(&imagen)
@@ -201,9 +295,12 @@ func main() {
 
 											}
 										}
-										contenido := estructuras.ArchivoJSON(pilaPedidos)
-										estructuras.CrearArchivo()
-										estructuras.EscribirArchivo(contenido)
+										if pilaPedidos.Primero != nil {
+
+											contenido := estructuras.ArchivoJSON(pilaPedidos)
+											estructuras.CrearArchivo()
+											estructuras.EscribirArchivo(contenido)
+										}
 									} else if colaClientes.Primero == nil {
 										fmt.Println("Ya no hay alumnos por atender")
 									}

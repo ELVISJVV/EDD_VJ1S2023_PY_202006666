@@ -27,7 +27,7 @@ func crearArchivo(nombre_archivo string) {
 		}
 		defer file.Close()
 	}
-	fmt.Println("Archivo creado exitosamente", nombre_archivo)
+	// fmt.Println("Archivo creado exitosamente", nombre_archivo)
 }
 
 func escribirArchivoDot(contenido string, nombre_archivo string) {
@@ -47,7 +47,7 @@ func escribirArchivoDot(contenido string, nombre_archivo string) {
 	if err != nil {
 		return
 	}
-	fmt.Println("Archivo actualizado existosamente.")
+	// fmt.Println("Archivo actualizado existosamente.")
 }
 
 func ejecutar(nombre_imagen string, archivo_dot string) {
