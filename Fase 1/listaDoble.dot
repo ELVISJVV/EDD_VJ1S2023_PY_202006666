@@ -1,0 +1,56 @@
+digraph L{
+node [shape=box fillcolor="#FFEDBB" style = filled]
+subgraph cluster_p{
+label="Lista Imagenes "
+bgcolor = "#398D9C"
+Columna1[label = "letra_r
+", fillcolor=yellow];
+Columna2[label = "ave
+", fillcolor=yellow];
+Columna3[label = "bmo
+", fillcolor=yellow];
+Columna4[label = "corrin
+", fillcolor=yellow];
+Columna5[label = "deadpool
+", fillcolor=yellow];
+Columna6[label = "hora_de_aventura
+", fillcolor=yellow];
+Columna7[label = "hulk
+", fillcolor=yellow];
+Columna8[label = "ironman
+", fillcolor=yellow];
+Columna9[label = "mario
+", fillcolor=yellow];
+Columna10[label = "tux
+", fillcolor=yellow];
+{rank = same;
+Columna1;
+Columna2;
+Columna3;
+Columna4;
+Columna5;
+Columna6;
+Columna7;
+Columna8;
+Columna9;
+Columna10}
+Columna10-> Columna9;
+Columna9-> Columna10;
+Columna9-> Columna8;
+Columna8-> Columna9;
+Columna8-> Columna7;
+Columna7-> Columna8;
+Columna7-> Columna6;
+Columna6-> Columna7;
+Columna6-> Columna5;
+Columna5-> Columna6;
+Columna5-> Columna4;
+Columna4-> Columna5;
+Columna4-> Columna3;
+Columna3-> Columna4;
+Columna3-> Columna2;
+Columna2-> Columna3;
+Columna2-> Columna1;
+Columna1-> Columna2;
+}
+}

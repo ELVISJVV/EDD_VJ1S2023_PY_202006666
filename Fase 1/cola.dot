@@ -1,0 +1,55 @@
+digraph L{
+node [shape=box fillcolor="#FFEDBB" style = filled]
+subgraph cluster_p{
+label="Cola Clientes Pendientes"
+bgcolor = "#398D9C"
+Columna1[label = "4575
+Cristian Suy", fillcolor=yellow];
+Columna2[label = "X
+Hector Jimenez", fillcolor=yellow];
+Columna3[label = "6344
+Joel Guzman", fillcolor=yellow];
+Columna4[label = "2480
+Karen Garcia", fillcolor=yellow];
+Columna5[label = "X
+Teodoro Mejia", fillcolor=yellow];
+Columna6[label = "5965
+Alejandra Perez", fillcolor=yellow];
+Columna7[label = "5313
+Teodoro Rodriguez", fillcolor=yellow];
+Columna8[label = "X
+Maria Jimenez", fillcolor=yellow];
+Columna9[label = "5030
+Leonardo Xocoy", fillcolor=yellow];
+Columna10[label = "5407
+Alberto Mejia", fillcolor=yellow];
+Columna11[label = "X
+Ricardo Echeverria", fillcolor=yellow];
+Columna12[label = "4983
+Benito Perez", fillcolor=yellow];
+{rank = same;
+Columna1;
+Columna2;
+Columna3;
+Columna4;
+Columna5;
+Columna6;
+Columna7;
+Columna8;
+Columna9;
+Columna10;
+Columna11;
+Columna12}
+Columna12-> Columna11;
+Columna11-> Columna10;
+Columna10-> Columna9;
+Columna9-> Columna8;
+Columna8-> Columna7;
+Columna7-> Columna6;
+Columna6-> Columna5;
+Columna5-> Columna4;
+Columna4-> Columna3;
+Columna3-> Columna2;
+Columna2-> Columna1;
+}
+}

@@ -1,0 +1,99 @@
+digraph L{
+node [shape=box fillcolor="#FFEDBB" style = filled]
+subgraph cluster_p{
+label="Lista Empleados "
+bgcolor = "#398D9C"
+Columna1[label = "ID: 5385
+Nombre: Cristian Suy", fillcolor=yellow];
+Columna2[label = "ID: 5236
+Nombre: Hector Jimenez", fillcolor=yellow];
+Columna3[label = "ID: 5224
+Nombre: Pablo Velasquez", fillcolor=yellow];
+Columna4[label = "ID: 5370
+Nombre: Jaquelin Gomez", fillcolor=yellow];
+Columna5[label = "ID: 4712
+Nombre: Yadira Ruiz", fillcolor=yellow];
+Columna6[label = "ID: 4269
+Nombre: Paula Fuentes", fillcolor=yellow];
+Columna7[label = "ID: 4820
+Nombre: Jose Menendez", fillcolor=yellow];
+Columna8[label = "ID: 4630
+Nombre: Leonardo Xocoy", fillcolor=yellow];
+Columna9[label = "ID: 5229
+Nombre: Alberto Mejia", fillcolor=yellow];
+Columna10[label = "ID: 5052
+Nombre: Benito Perez", fillcolor=yellow];
+Columna11[label = "ID: 5325
+Nombre: Jose Requeda", fillcolor=yellow];
+Columna12[label = "ID: 4696
+Nombre: Jordi Urrutia", fillcolor=yellow];
+Columna13[label = "ID: 4242
+Nombre: Leopoldo Ruiz", fillcolor=yellow];
+Columna14[label = "ID: 5513
+Nombre: Gerardo Mendez", fillcolor=yellow];
+Columna15[label = "ID: 4469
+Nombre: Pedro Hernandez", fillcolor=yellow];
+Columna16[label = "ID: 4364
+Nombre: Maria Tux", fillcolor=yellow];
+Columna17[label = "ID: 4989
+Nombre: Teodoro Rodriguez", fillcolor=yellow];
+Columna18[label = "ID: 
+Nombre: ", fillcolor=yellow];
+Columna19[label = "ID: 
+Nombre: ", fillcolor=yellow];
+Columna20[label = "ID: 
+Nombre: ", fillcolor=yellow];
+Columna21[label = "ID: 
+Nombre: ", fillcolor=yellow];
+Columna22[label = "ID: 
+Nombre: ", fillcolor=yellow];
+Columna23[label = "ID: 
+Nombre: ", fillcolor=yellow];
+{rank = same;
+Columna1;
+Columna2;
+Columna3;
+Columna4;
+Columna5;
+Columna6;
+Columna7;
+Columna8;
+Columna9;
+Columna10;
+Columna11;
+Columna12;
+Columna13;
+Columna14;
+Columna15;
+Columna16;
+Columna17;
+Columna18;
+Columna19;
+Columna20;
+Columna21;
+Columna22;
+Columna23}
+Columna23-> Columna22;
+Columna22-> Columna21;
+Columna21-> Columna20;
+Columna20-> Columna19;
+Columna19-> Columna18;
+Columna18-> Columna17;
+Columna17-> Columna16;
+Columna16-> Columna15;
+Columna15-> Columna14;
+Columna14-> Columna13;
+Columna13-> Columna12;
+Columna12-> Columna11;
+Columna11-> Columna10;
+Columna10-> Columna9;
+Columna9-> Columna8;
+Columna8-> Columna7;
+Columna7-> Columna6;
+Columna6-> Columna5;
+Columna5-> Columna4;
+Columna4-> Columna3;
+Columna3-> Columna2;
+Columna2-> Columna1;
+}
+}

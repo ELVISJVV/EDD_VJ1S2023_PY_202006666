@@ -1,0 +1,52 @@
+{
+	"pedidos": [
+		{
+			"id_cliente": 4983, 
+			"imagen": "ave"
+		},
+		{
+			"id_cliente": 2744, 
+			"imagen": "letra_r"
+		},
+		{
+			"id_cliente": 5407, 
+			"imagen": "tux"
+		},
+		{
+			"id_cliente": 5030, 
+			"imagen": "mario"
+		},
+		{
+			"id_cliente": 4039, 
+			"imagen": "ironman"
+		},
+		{
+			"id_cliente": 5313, 
+			"imagen": "hulk"
+		},
+		{
+			"id_cliente": 8270, 
+			"imagen": "hora_de_aventura"
+		},
+		{
+			"id_cliente": 3144, 
+			"imagen": "deadpool"
+		},
+		{
+			"id_cliente": 1126, 
+			"imagen": "corrin"
+		},
+		{
+			"id_cliente": 4184, 
+			"imagen": "bmo"
+		},
+		{
+			"id_cliente": 4826, 
+			"imagen": "ave"
+		},
+		{
+			"id_cliente": 3995, 
+			"imagen": "letra_r" 
+		}
+	]
+}

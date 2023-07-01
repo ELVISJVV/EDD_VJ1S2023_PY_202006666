@@ -1,0 +1,8 @@
+digraph L{
+node [shape=box fillcolor="#FFEDBB" style = filled]
+subgraph cluster_p{
+label="Pila Pedidos"
+bgcolor = "#398D9C"
+Columna[shape=record label = "{|ID Cliente: 4983\nImagen: ave|ID Cliente: 2744\nImagen: letra_r|ID Cliente: 5407\nImagen: tux|ID Cliente: 5030\nImagen: mario|ID Cliente: 4039\nImagen: ironman|ID Cliente: 5313\nImagen: hulk|ID Cliente: 8270\nImagen: hora_de_aventura|ID Cliente: 3144\nImagen: deadpool|ID Cliente: 1126\nImagen: corrin|ID Cliente: 4184\nImagen: bmo|ID Cliente: 4826\nImagen: ave|ID Cliente: 3995\nImagen: letra_r|}", fillcolor=yellow];
+}
+}
