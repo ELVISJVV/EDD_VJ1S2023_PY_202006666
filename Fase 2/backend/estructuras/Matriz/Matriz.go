@@ -61,9 +61,9 @@ func (m *Matriz) insertarColumna(nuevoNodo *NodoMatriz, nodoRaiz *NodoMatriz) *N
 		}
 	}
 	if piv {
-		/*Asumir que nuevo = C1*/
+		
 		nuevoNodo.Siguiente = temp          // C2
-		temp.Anterior.Siguiente = nuevoNodo // siguiente de raiz ahora es C1
+		temp.Anterior.Siguiente = nuevoNodo // siguiente de raiz 
 		nuevoNodo.Anterior = temp.Anterior  // Anterior Raiz
 		temp.Anterior = nuevoNodo           //
 	} else {
@@ -205,7 +205,7 @@ func (m *Matriz) Reporte() {
 }
 
 func (m *Matriz) LeerArchivo(ruta string) {
-	//listaAux := &ListaCircular{Inicio: nil, Longitud: 0}
+	
 	file, err := os.Open(ruta)
 	if err != nil {
 		fmt.Println("No pude abrir el archivo")
@@ -326,7 +326,10 @@ func (m *Matriz) GenerarImagen(nombre_imagen string) {
 			x++
 		}
 		x_pixel = 0
-		auxFila = auxFila.Abajo
+		if auxFila.Abajo != nil {
+			auxFila = auxFila.Abajo
+
+		}
 		if auxFila != nil {
 			auxColumna = auxFila.Siguiente
 		}
@@ -387,7 +390,7 @@ func (m *Matriz) EscalaGrises(nombre_imagen string) {
 		}
 		x_pixel = 0
 		// auxFila = auxFila.Abajo
-		if auxFila.Abajo != nil {
+		if auxFila != nil {
 			auxFila = auxFila.Abajo
 
 		}
@@ -438,7 +441,7 @@ func (m *Matriz) Negativo(nombre_imagen string) {
 		}
 		x_pixel = 0
 		// auxFila = auxFila.Abajo
-		if auxFila.Abajo != nil {
+		if auxFila != nil {
 			auxFila = auxFila.Abajo
 
 		}
@@ -468,7 +471,7 @@ func (m *Matriz) RotacionDoble() {
 			}
 		}
 		// auxFila = auxFila.Abajo
-		if auxFila.Abajo != nil {
+		if auxFila != nil {
 			auxFila = auxFila.Abajo
 
 		}
@@ -493,7 +496,7 @@ func (m *Matriz) RotacionX() {
 			}
 		}
 		// auxFila = auxFila.Abajo
-		if auxFila.Abajo != nil {
+		if auxFila != nil {
 			auxFila = auxFila.Abajo
 
 		}
@@ -501,6 +504,8 @@ func (m *Matriz) RotacionX() {
 			auxColumna = auxFila.Siguiente
 		}
 	}
+	
+	
 	m.Raiz = matrizAux.Raiz
 }
 
@@ -518,7 +523,7 @@ func (m *Matriz) RotacionY() {
 			}
 		}
 		// auxFila = auxFila.Abajo
-		if auxFila.Abajo != nil {
+		if auxFila != nil {
 			auxFila = auxFila.Abajo
 
 		}
@@ -526,5 +531,8 @@ func (m *Matriz) RotacionY() {
 			auxColumna = auxFila.Siguiente
 		}
 	}
-	m.Raiz = matrizAux.Raiz
+	
+		
+		m.Raiz = matrizAux.Raiz
+	
 }

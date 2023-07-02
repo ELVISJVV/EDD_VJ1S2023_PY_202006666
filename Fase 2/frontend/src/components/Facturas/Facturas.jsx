@@ -47,8 +47,9 @@ export const Factura = () => {
                                 facturas.map((element, j) => {
                                     if (element.Id_Cliente != '') {
                                         return <>
+                                            {/* <tr kry={j}> */}
                                             <tr key={"fact" + j}>
-                                                <th scope="row">{j + 1}</th>
+                                                <th scope="row">{j +1 }</th>
                                                 <td>{element.Id_Cliente}</td>
                                                 <td>{element.Id_Factura}</td>
                                             </tr>

@@ -4,11 +4,11 @@ import (
 	"backend/estructuras/ArbolAVL"
 	"backend/estructuras/ColaPedidos"
 	"backend/estructuras/Facturas"
+	"backend/estructuras/Grafo"
 	"backend/estructuras/Lista"
 	"backend/estructuras/Matriz"
 	"backend/estructuras/Peticiones"
 	"backend/estructuras/TablaHash"
-	"backend/estructuras/Grafo"
 
 	// "backend/estructuras/GenerarArchivos"
 	"encoding/base64"
@@ -24,12 +24,11 @@ var ArbolPedidos *ArbolAVL.Arbol
 var MatrizOriginal *Matriz.Matriz
 var MatrizFiltro *Matriz.Matriz
 var PedidosCola *ColaPedidos.Cola
-var FacturasRealizadas  *Facturas.BlockChain
+var FacturasRealizadas *Facturas.BlockChain
 var VerFacturasRealizadas *TablaHash.TablaHash
 var FiltrosColocados string
 var EmpleadoLogeado string
 var GrafosEmpleados map[string]Grafo.Grafo
-
 
 func main() {
 	// estructuras utilizadas
@@ -42,7 +41,7 @@ func main() {
 	VerFacturasRealizadas = &TablaHash.TablaHash{Capacidad: 5, Utilizacion: 0}
 	FiltrosColocados = ""
 	EmpleadoLogeado = ""
-	
+
 	app := fiber.New()
 	app.Use(cors.New())
 
@@ -55,7 +54,7 @@ func main() {
 			return c.JSON(&fiber.Map{
 				"status": "admin",
 			})
-		}else {
+		} else {
 			if ListaEmpleados.Inicio != nil {
 				if ListaEmpleados.Buscar(usuario.Username, usuario.Password) {
 					VerFacturasRealizadas = &TablaHash.TablaHash{Capacidad: 5, Utilizacion: 0}
@@ -65,7 +64,7 @@ func main() {
 						"status": "employee",
 					})
 				}
-			}else {
+			} else {
 				return c.JSON(&fiber.Map{
 					"status": "unknown",
 				})
@@ -108,7 +107,7 @@ func main() {
 		imageBytes, err := ioutil.ReadFile(imagen.Nombre)
 		if err != nil {
 			return c.JSON(&fiber.Map{
-				"status": 404, 
+				"status": 404,
 			})
 		}
 		// Codifica los bytes de la imagen en base64
@@ -137,7 +136,8 @@ func main() {
 	})
 
 	app.Get("/reporte-bloque", func(c *fiber.Ctx) error {
-		var imagen Peticiones.RespuestaImagen = Peticiones.RespuestaImagen{Nombre: "Reporte/bloque.jpg"}
+		FacturasRealizadas.GenerateGraph()
+		var imagen Peticiones.RespuestaImagen = Peticiones.RespuestaImagen{Nombre: "blockchain-graph.png"}
 		/*INICIO*/
 		imageBytes, err := ioutil.ReadFile(imagen.Nombre)
 		if err != nil {
@@ -156,7 +156,8 @@ func main() {
 	app.Post("/aplicarfiltro", func(c *fiber.Ctx) error {
 		var tipo Peticiones.PeticionFiltro
 		c.BodyParser(&tipo)
-		fmt.Println(tipo)
+		// fmt.Println(tipo)
+
 		tipo.NombreImagen = PedidosCola.Primero.Pedido.Nombre_Imagen
 		switch tipo.Tipo {
 		case 1:
@@ -204,6 +205,7 @@ func main() {
 		FacturasRealizadas.InsertarTabla(VerFacturasRealizadas, EmpleadoLogeado)
 		MatrizOriginal = &Matriz.Matriz{Raiz: &Matriz.NodoMatriz{PosX: -1, PosY: -1, Color: "Raiz"}}
 		MatrizFiltro = &Matriz.Matriz{Raiz: &Matriz.NodoMatriz{PosX: -1, PosY: -1, Color: "Raiz"}}
+		// FacturasRealizadas.GenerateGraph()
 		return c.JSON(&fiber.Map{
 			"datos": FacturasRealizadas.Bloques_Creados,
 		})
@@ -216,8 +218,6 @@ func main() {
 			"factura": VerFacturasRealizadas.Tabla,
 		})
 	})
-
-
 
 	app.Listen(":3001")
 }
