@@ -3,6 +3,7 @@ import imageLogin from '../../img/login.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const Login = () => {   
     const navigate = useNavigate();
 
@@ -42,7 +43,8 @@ const Login = () => {
         if (data.status === 'admin'){
             navigate('/admin')
         }else if(data.status === 'employee'){
-            // navigate('/user')
+            localStorage.setItem('empleado', userData.user)
+            navigate('/empleado')
         }else{
             alert('Usuario o contraseña incorrecta')
         }

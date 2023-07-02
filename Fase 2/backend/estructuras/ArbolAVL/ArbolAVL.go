@@ -1,11 +1,11 @@
 package ArbolAVL
 
 import (
-	// "estructuras/ColaPedidos"
 	"backend/estructuras/GenerarArchivos"
 	"backend/estructuras/Peticiones"
+	"backend/estructuras/ColaPedidos"
 
-	// "fmt"
+	"fmt"
 	"math"
 	"strconv"
 )
@@ -153,3 +153,15 @@ func (a *Arbol) retornarValoresArbol(raiz *NodoArbol, indice int) string {
 	return cadena
 }
 
+func (a *Arbol) RecorridoInorden(raiz *NodoArbol, colaActual *ColaPedidos.Cola) {
+	if raiz != nil {
+		if raiz.Izquierdo != nil {
+			a.RecorridoInorden(raiz.Izquierdo, colaActual)
+		}
+		colaActual.Encolar(raiz.Valor.Id_Cliente, raiz.Valor.Nombre_Imagen)
+		fmt.Print(" ", raiz.Valor, " ")
+		if raiz.Derecho != nil {
+			a.RecorridoInorden(raiz.Derecho, colaActual)
+		}
+	}
+}
