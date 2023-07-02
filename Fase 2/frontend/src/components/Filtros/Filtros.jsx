@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../../css/Administrator.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -11,7 +11,12 @@ export const Filtros = () => {
     }
 
     const validar = (data) => {
-        console.log(data)
+        if (data.status === 400) {
+            alert("Ya no hay mas clientes en la cola")
+            // window.open("/empleado", "_self")
+        }
+        else alert("Filtro Aplicado Correctamente")
+        // console.log(data)
     }
 
     const aplicarFiltros = async (e) => {

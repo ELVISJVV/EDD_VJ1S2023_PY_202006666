@@ -1,0 +1,19 @@
+graph grafoDirigido{ 
+ rankdir=LR; 
+ node [shape=box]; layout=neato; 
+ nodo00[label="5385"]; 
+node [shape = ellipse]; 
+nodo01[label="1126" ]; 
+nodo11[label="corrin" ]; 
+nodo21[label="Escala Grises" ]; 
+nodo02[label="3144" ]; 
+nodo12[label="deadpool" ]; 
+nodo22[label="Doble Espejo" ]; 
+nodo00 -- nodo01 -- nodo11 -- nodo21[len=1.00]; 
+nodo00 -- nodo02 -- nodo12 -- nodo22[len=1.00]; 
+
+}- nodo21[len=1.00]; 
+nodo00 -- nodo02 -- nodo12 -- nodo22[len=1.00]; 
+nodo00 -- nodo03 -- nodo13 -- nodo23[len=1.00]; 
+
+}

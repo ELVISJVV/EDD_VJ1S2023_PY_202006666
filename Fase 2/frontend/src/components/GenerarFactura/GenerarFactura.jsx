@@ -43,6 +43,7 @@ export const GenerarFactura = () => {
         })
             .then(response => response.json())
             .then(data => console.log(data))
+            alert("Factura Generada")
     }
 
     const salir = (e) => {

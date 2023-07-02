@@ -178,10 +178,10 @@ func main() {
 												matriz.LeerArchivo("csv/" + imagenElegida + "/" + capaElegida + ".csv")
 												matriz.Reporte()
 												cmd := exec.Command("cmd", "/c", "start", "matriz.jpg")
-								err := cmd.Start()
-								if err != nil {
-									fmt.Println("No pude abrir imagen")
-								}
+												err := cmd.Start()
+												if err != nil {
+													fmt.Println("No pude abrir imagen")
+												}
 												salircapas = false
 											} else {
 												fmt.Println("Ingrese una opcion valida")
@@ -249,11 +249,11 @@ func main() {
 											matriz_csv := &estructuras.Matriz{Raiz: &estructuras.NodoMatriz{PosX: -1, PosY: -1, Color: "RAIZ"}}
 											matriz_csv.LeerInicial("csv/"+imagenElegida+"/inicial.csv", imagenElegida)
 											matriz_csv.GenerarImagen(imagenElegida)
-											cmd := exec.Command("cmd", "/c", "start", "csv/" + imagenElegida + "/" + imagenElegida + ".html")
-								err := cmd.Start()
-								if err != nil {
-									fmt.Println("No pude abrir imagen")
-								}
+											cmd := exec.Command("cmd", "/c", "start", "csv/"+imagenElegida+"/"+imagenElegida+".html")
+											err := cmd.Start()
+											if err != nil {
+												fmt.Println("No pude abrir imagen")
+											}
 
 										} else {
 											fmt.Println("Ingrese una opcion valida")
