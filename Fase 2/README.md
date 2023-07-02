@@ -14,34 +14,34 @@ Al iniciar la aplicacion aparecerá el siguiente menú
 ### Menú Admin
 Por medio de l cual se podrá iniciar sesión ingresando con el usuario "ADMIN_202006666" y la contraseña "admin"
 
-![Menú Principal](/assets/login.png)
+![Menú Principal](assets/login.png)
 
 
 Al ingresar dichas credenciales podremos acceder al menú del administrador. EN este menú podremos hacer la carga de los pedidos por medio de un archivo "JSON" y la carga de em empleados con un archivo "CSV"
 
-![menú admin](/assets/admin.png)
+![menú admin](assets/admin.png)
 
 Tambien tendremos dos botones, uno de ellos nos permitirá deslogearnos de la cuenta admin y el otro nos permitirá ver los distintos reportes que se vayan generando.
 
 
-![reportes](/assets/reportes.png)
+![reportes](assets/reportes.png)
 
 ### Menú Empleado
 Al ingresar con alguna de las credenciales de los empleados podremos acceder al menú de empleado en el cual veremos lo siguiente:
 
-![empleado](/assets/empleado.png)
+![empleado](assets/empleado.png)
 
 Al ingresar a la opción de Aplicación de Filtros podremos ver que filtro deseamos aplicar a la imagen que el primer cliente de la cola desee aplicar.
 
-![filtro](/assets/filtro.png)
+![filtro](assets/filtro.png)
 
 Luego de escoger un filtro debemos generar la factura ingresando el monto total a cobrar.
 
-![generarfactura](/assets/generarFactura.png)
+![generarfactura](assets/generarFactura.png)
 
 Por último tendremos un menú donde podremos ver todas las facturas generadas.
 
-![factura](/assets/verFacturas.png)
+![factura](assets/verFacturas.png)
 
 
 
@@ -260,3 +260,158 @@ func (t *TablaHash) Insertar(id_cliente string, id_factura string) {
 ``` 
 
 ##### Arbol AVl
+
+Un árbol AVL es un árbol binario de búsqueda, eso quiere decir que está estructurado a través de nodos donde el subárbol izquierdo cumple con que todos los nodos son menores que la raíz, y el subárbol derecho cumple con que todos los nodos son mayores a la raíz.
+
+``` Go
+     type Arbol struct {
+	Raiz *NodoArbol
+}
+
+func (a *Arbol) altura(raiz *NodoArbol) int {
+	if raiz == nil {
+		return 0
+	}
+	return raiz.Altura
+}
+
+func (a *Arbol) equilibrio(raiz *NodoArbol) int {
+	if raiz == nil {
+		return 0
+	}
+	return (a.altura(raiz.Derecho) - a.altura(raiz.Izquierdo))
+}
+
+func (a *Arbol) InsertarElemento(id_cliente int, nombre_imagen string) {
+	nuevoNodo := &NodoArbol{Valor: &Peticiones.Pedido{Id_Cliente: id_cliente, Nombre_Imagen: nombre_imagen}}
+	a.Raiz = a.insertarNodo(a.Raiz, nuevoNodo)
+}
+
+func (a *Arbol) rotacionI(raiz *NodoArbol) *NodoArbol {
+	raiz_derecho := raiz.Derecho
+	hijo_izquierdo := raiz_derecho.Izquierdo
+	raiz_derecho.Izquierdo = raiz
+	raiz.Derecho = hijo_izquierdo
+	numeroMax := math.Max(float64(a.altura(raiz.Izquierdo)), float64(a.altura(raiz.Derecho)))
+	raiz.Altura = 1 + int(numeroMax)
+	numeroMax = math.Max(float64(a.altura(raiz_derecho.Izquierdo)), float64(a.altura(raiz_derecho.Derecho)))
+	raiz_derecho.Altura = 1 + int(numeroMax)
+	raiz.Factor_Equilibrio = a.equilibrio(raiz)
+	raiz_derecho.Factor_Equilibrio = a.equilibrio(raiz_derecho)
+	return raiz_derecho
+}
+
+func (a *Arbol) rotacionD(raiz *NodoArbol) *NodoArbol {
+	raiz_izquierdo := raiz.Izquierdo
+	hijo_derecho := raiz_izquierdo.Derecho
+	raiz_izquierdo.Derecho = raiz
+	raiz.Izquierdo = hijo_derecho
+	numeroMax := math.Max(float64(a.altura(raiz.Izquierdo)), float64(a.altura(raiz.Derecho)))
+	raiz.Altura = 1 + int(numeroMax)
+	numeroMax = math.Max(float64(a.altura(raiz_izquierdo.Izquierdo)), float64(a.altura(raiz_izquierdo.Derecho)))
+	raiz_izquierdo.Altura = 1 + int(numeroMax)
+	raiz.Factor_Equilibrio = a.equilibrio(raiz)
+	raiz_izquierdo.Factor_Equilibrio = a.equilibrio(raiz_izquierdo)
+	return raiz_izquierdo
+}
+
+func (a *Arbol) insertarNodo(raiz *NodoArbol, nuevoNodo *NodoArbol) *NodoArbol {
+	if raiz == nil {
+		raiz = nuevoNodo
+	} else {
+		if raiz.Valor.Id_Cliente > nuevoNodo.Valor.Id_Cliente {
+			raiz.Izquierdo = a.insertarNodo(raiz.Izquierdo, nuevoNodo)
+		} else {
+			raiz.Derecho = a.insertarNodo(raiz.Derecho, nuevoNodo)
+		}
+	}
+	numeroMax := math.Max(float64(a.altura(raiz.Izquierdo)), float64(a.altura(raiz.Derecho)))
+	raiz.Altura = 1 + int(numeroMax)
+	balanceo := a.equilibrio(raiz)
+	raiz.Factor_Equilibrio = balanceo
+	/*Rotacion simple a la izquierda*/
+	if balanceo > 1 && nuevoNodo.Valor.Id_Cliente > raiz.Derecho.Valor.Id_Cliente {
+		return a.rotacionI(raiz)
+	}
+	if balanceo < -1 && nuevoNodo.Valor.Id_Cliente < raiz.Izquierdo.Valor.Id_Cliente {
+		return a.rotacionD(raiz)
+	}
+	if balanceo > 1 && nuevoNodo.Valor.Id_Cliente < raiz.Derecho.Valor.Id_Cliente {
+		raiz.Derecho = a.rotacionD(raiz.Derecho)
+		return a.rotacionI(raiz)
+	}
+	if balanceo < -1 && nuevoNodo.Valor.Id_Cliente > raiz.Izquierdo.Valor.Id_Cliente {
+		raiz.Izquierdo = a.rotacionI(raiz.Izquierdo)
+		return a.rotacionD(raiz)
+	}
+	return raiz
+}
+
+```
+
+
+##### Grafo No Dirigido
+
+Los grafos son estructuras de datos, es decir, tipos de datos abstractos, comúnmente los grafos son utilizados para el modelado de problemas. Un grafo es un conjunto no vacıo de objetos o entes fısicos que tienen relación entre ellos.Un grafo dirigido o digrafo es un tipo de grafo en el cual las aristas tienen un sentido definido,​ a diferencia del grafo no dirigido, en el cual las aristas son relaciones simétricas y no apuntan en ningún sentido.
+
+``` Go
+    type Grafo struct {
+	Principal *NodoMatrizDeAdyacencia
+}
+
+
+
+func (g *Grafo) insertarC(padre string, hijo string, filtro string) { // cliente, imagen
+	nuevoNodo := &NodoMatrizDeAdyacencia{Valor: hijo}
+	if g.Principal != nil && padre == g.Principal.Valor {
+		aux := g.Principal
+		for aux.Siguiente != nil {
+			aux = aux.Siguiente
+		}
+		aux.Siguiente = nuevoNodo
+	} else {
+		g.insertarF(padre)
+		aux := g.Principal
+		for aux != nil {
+			if aux.Valor == padre {
+				break
+			}
+			aux = aux.Abajo
+		}
+		if aux != nil {
+			nuevoNodo.Siguiente = &NodoMatrizDeAdyacencia{Valor: filtro}
+			aux.Siguiente = nuevoNodo
+		}
+	}
+}
+
+func (g *Grafo) insertarF(padre string) {
+	nuevoNodo := &NodoMatrizDeAdyacencia{Valor: padre}
+	if g.Principal == nil {
+		g.Principal = nuevoNodo
+	} else {
+		aux := g.Principal
+		for aux.Abajo != nil {
+			if aux.Valor == padre {
+				return
+			}
+			aux = aux.Abajo
+		}
+		aux.Abajo = nuevoNodo
+	}
+}
+
+
+
+func (g *Grafo) InsertarValores(padre string, cliente string, imagen string, filtros string) {
+	if g.Principal == nil {
+		g.insertarF(padre)
+		g.insertarC(padre, cliente, "")
+		g.insertarC(cliente, imagen, filtros)
+	} else {
+		g.insertarC(padre, cliente, "")
+		g.insertarC(cliente, imagen, filtros)
+	}
+}
+
+```
