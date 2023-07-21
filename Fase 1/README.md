@@ -18,9 +18,11 @@ Al iniciar la aplicacion aparecerá el siguiente menú
 Por medio de l cual se podrá iniciar sesión ingresando con el usuario "ADMIN_202006666" y la contraseña "admin"
 
 Al ingresar dichas credenciales podremos acceder al menú del administrador 
+
 ![menú admin](./images/admin.png)
 
 En este menú podremos subir los empleados, las imagenes, los clientes, la cola de clientes por medio de un archivo tipo **CSV**, solo es necesario agregar la ruta relativa del archivo para poder realizar la carga masiva
+
 ![Carga Masiva](./images/cargaMasiva.png)
 
 También podremos generar reportes por medio de otro menú al cual podremos acceder y se nos mostrará una grafica de las estructuras que ha almacenado los archivos.
