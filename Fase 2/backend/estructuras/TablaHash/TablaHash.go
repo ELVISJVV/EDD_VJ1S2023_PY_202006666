@@ -18,6 +18,7 @@ func (t *TablaHash) calculoIndice(id_cliente int, multiplicador int) int {
 	return indice
 }
 
+
 func (t *TablaHash) capacidad_Tabla() {
 	auxCap := float64(t.Capacidad) * 0.6
 	if t.Utilizacion > int(auxCap) {

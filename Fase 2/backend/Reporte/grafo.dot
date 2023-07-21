@@ -3,17 +3,29 @@ graph grafoDirigido{
  node [shape=box]; layout=neato; 
  nodo00[label="5385"]; 
 node [shape = ellipse]; 
-nodo01[label="1126" ]; 
+nodo01[label="2480" ]; 
 nodo11[label="corrin" ]; 
 nodo21[label="Escala Grises" ]; 
-nodo02[label="3144" ]; 
-nodo12[label="deadpool" ]; 
+nodo02[label="3589" ]; 
+nodo12[label="letra_r" ]; 
 nodo22[label="Doble Espejo" ]; 
+nodo03[label="4575" ]; 
+nodo13[label="letra_r" ]; 
+nodo23[label="Espejo X" ]; 
+nodo04[label="4983" ]; 
+nodo14[label="mario" ]; 
+nodo24[label="Espejo Y" ]; 
+nodo05[label="5030" ]; 
+nodo15[label="mario" ]; 
+nodo25[label="Doble Espejo" ]; 
+nodo06[label="5313" ]; 
+nodo16[label="hulk" ]; 
+nodo26[label="Negativo" ]; 
 nodo00 -- nodo01 -- nodo11 -- nodo21[len=1.00]; 
 nodo00 -- nodo02 -- nodo12 -- nodo22[len=1.00]; 
-
-}- nodo21[len=1.00]; 
-nodo00 -- nodo02 -- nodo12 -- nodo22[len=1.00]; 
 nodo00 -- nodo03 -- nodo13 -- nodo23[len=1.00]; 
+nodo00 -- nodo04 -- nodo14 -- nodo24[len=1.00]; 
+nodo00 -- nodo05 -- nodo15 -- nodo25[len=1.00]; 
+nodo00 -- nodo06 -- nodo16 -- nodo26[len=1.00]; 
 
 }

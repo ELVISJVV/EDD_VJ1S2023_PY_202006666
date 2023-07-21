@@ -6,6 +6,7 @@
     --login-rows: 1fr;
     --clip: polygon(35% 0%, 100% 0, 100% 100%, 0% 100%);
     --color-primary: #5050f0;
+    background-color: #000;
 }
 
 body {
