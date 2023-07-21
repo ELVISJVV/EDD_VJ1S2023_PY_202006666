@@ -13,35 +13,37 @@ Al verrificar que si tenga instalado Go, es necesario ubicarse por medio de la t
 ```
 Al iniciar la aplicacion aparecerá el siguiente menú 
 
-![Menú Principal](/images/Menu.png)
+![Menú Principal](./images/Menu.png)
 
 Por medio de l cual se podrá iniciar sesión ingresando con el usuario "ADMIN_202006666" y la contraseña "admin"
 
 Al ingresar dichas credenciales podremos acceder al menú del administrador 
-![menú admin](/images/admin.png)
+![menú admin](./images/admin.png)
 
 En este menú podremos subir los empleados, las imagenes, los clientes, la cola de clientes por medio de un archivo tipo **CSV**, solo es necesario agregar la ruta relativa del archivo para poder realizar la carga masiva
-![Carga Masiva](/images/cargaMasiva.png)
+![Carga Masiva](./images/cargaMasiva.png)
 
 También podremos generar reportes por medio de otro menú al cual podremos acceder y se nos mostrará una grafica de las estructuras que ha almacenado los archivos.
 
-![Reportes](/images/reportes.png)
+![Reportes](./images/reportes.png)
 
-![Reportes](/images/listaSimple.jpg)
+![Reportes](./images/listaSimple.jpg)
 
 
 Podremos iniciar sesión con los empleados que se ingresaron por medio del archivo CSV, solo necesitaremos regresar al menú principal e ingresal las credenciales correctas del empleado con el cual queremos iniciar la sesión
-![menu empleado](/images/empleado.png)
+![menu empleado](./images/empleado.png)
 
 Al ingresar al menú de empleado podremos ver las imagenes cargadas y elegir una de ellas, al hacer esto se nos mostrará un archivo html con la imagen elegida.
 
-![imagenes](/images/imagenes.png)
-![deadpool](/images/deadpool.png)
+![imagenes](./images/imagenes.png)
+
+
+![deadpool](./images/deadpool.png)
 
 
 También podremos atender a la cola de clientes ingresados
 
-![pedido](/images/pedido.png)
+![pedido](./images/pedido.png)
 
 El cliente podrá escoger la imagen a su elección y será pasado a una pila de clientes atendidos, si algún cliente en la cola no se encontraba ingresado anteriormente se le generará un número de ID aleatorio y será almacenado como cliente nuevo.
 
