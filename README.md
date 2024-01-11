@@ -1,4 +1,4 @@
-# Proyecto con estructura de datos
+# Proyecto de Estructura de datos
 
 
 La empresa EDD Creative, luego del éxito de la aplicación en consola presentado
